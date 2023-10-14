@@ -1,4 +1,4 @@
 package model;
 
-public class SuperManager extends Manager{
+public class SuperManager {
 }

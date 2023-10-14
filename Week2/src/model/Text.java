@@ -2,7 +2,7 @@ package model;
 
 public class Text {
     public static void textMenu() {
-        printOut("==============> Please choice functions:<==============");//Vui lòng chọn chức năng
+        printOut("=====================> Functions:<=====================");//Vui lòng chọn chức năng
         printOut("= 1.Add company information                           =");//Nhập thông tin công ty
         printOut("= 2.Staff allocation                                  =");//Phân bổ nhân viên lên trưởng phòng
         printOut("= 3.Manager allocation                                =");//Phân bổ trưởng phòng lên giám đốc
@@ -14,7 +14,9 @@ public class Text {
         printOut("= 9.Sort employees by decrease salary                 =");//Sắp xếp theo lương giảm
         printOut("= 10.SuperManager has most shares                     =");//Giám đốc có cổ phần nhiều nhất
         printOut("= 11.Calculate and show total salary of SuperManagers =");//Tính và hiển thị lương giám đốc
+        printOut("= 0.Exit                                              =");
         stringLine();
+        textChoice();
     }
 
     public static void printOut(String str) {
@@ -24,7 +26,20 @@ public class Text {
     public static void stringLine() {
         System.out.println("=====================================================");
     }
-    public static void textGetInfor(){
-        System.out.println("Vui lòng nhập các thông tin sau:");
+
+    public static void textGetInfor() {
+        System.out.println("Please add information:");
+    }
+
+    public static void textChoice() {
+        System.out.println("Please choice functions:");
+    }
+
+    public static void textSuccess() {
+        System.out.println("==========> Success <===========");
+    }
+
+    public static void textFail() {
+        System.out.println("==========> Fail <===========");
     }
 }

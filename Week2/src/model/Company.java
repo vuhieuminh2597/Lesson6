@@ -42,11 +42,26 @@ public class Company {
     }
 
     @Override
-    public String toString(){
-        return "Company {" + "name:" + this.name
-                + ",taxCode:" + this.taxCode
-                + ",monthRevenue:" + this.monthRevenue + "}";
+    public boolean equals(Object obj) {
+        if (obj instanceof Company) {
+            Company c = (Company) obj;
+            if (this.name.equals(c.name) && this.taxCode.equals(c.taxCode)
+                    && this.monthRevenue == ((Company) obj).monthRevenue) {
+                return true;
+            }
+        }
+        return false;
     }
 
-
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", taxCode='" + taxCode + '\'' +
+                ", monthRevenue=" + monthRevenue +
+                ", staffs=" + staffs +
+                ", managers=" + managers +
+                ", superManagers=" + superManagers +
+                '}';
+    }
 }
