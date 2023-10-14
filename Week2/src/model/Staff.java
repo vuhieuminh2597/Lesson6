@@ -22,9 +22,22 @@ public class Staff extends Employee implements Calculable {
     }
 
     @Override
+    public String getduty() {
+        return "Staff";
+    }
+
+    @Override
     public void calculateSalary() {
         if (this.getDayWork() > 0) {
             this.totalSalary = this.getDayWork() * SALARY_PER_WORKING_DAY;
         }
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "Staff{" +
+                "totalSalary=" + totalSalary +
+                '}';
     }
 }

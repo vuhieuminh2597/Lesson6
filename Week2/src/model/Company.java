@@ -59,9 +59,6 @@ public class Company {
                 "name='" + name + '\'' +
                 ", taxCode='" + taxCode + '\'' +
                 ", monthRevenue=" + monthRevenue +
-                ", staffs=" + staffs +
-                ", managers=" + managers +
-                ", superManagers=" + superManagers +
                 '}';
     }
 }

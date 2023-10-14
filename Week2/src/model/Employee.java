@@ -45,6 +45,8 @@ public abstract class Employee {
         return this.dayWork;
     }
 
+    public abstract String getduty();
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Employee) {
