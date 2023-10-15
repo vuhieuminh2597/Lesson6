@@ -1,8 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Staff extends Employee implements Calculable {
     private static final double SALARY_PER_WORKING_DAY = 100.0;
     private double totalSalary;
+
+    private List<Manager> superior = new ArrayList<>();//Cấp trên quản lý
 
     public Staff(String idString, String name, String phoneNumber, int dayWork) {
         super(idString, name, phoneNumber, dayWork);
@@ -14,6 +19,27 @@ public class Staff extends Employee implements Calculable {
 
     public double getTotalSalary() {
         return this.totalSalary;
+    }
+
+    public void setSuperior(Manager manager) {
+        this.superior.add(manager);
+    }
+
+    public List<Manager> getSuperior() {
+        return this.superior;
+    }
+
+    public boolean deleteSuperior(Manager manager) {
+        if (manager != null) {
+            for (var read :
+                    superior) {
+                if (read.equals(manager)) {
+                    superior.remove(manager);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

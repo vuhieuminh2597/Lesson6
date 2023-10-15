@@ -9,6 +9,7 @@ public class Text {
         printOut("= 4.Thêm mới giám đốc.                              =");
         printOut("= 5.Phân bổ nhân viên vào trưởng phòng.             =");
         printOut("= 6.Xóa nhân sự.                                    =");
+        printOut("= 7.Xuất thông tin toàn bộ nhân viên trong cty      =");
         stringLine();
         textChoice();
     }

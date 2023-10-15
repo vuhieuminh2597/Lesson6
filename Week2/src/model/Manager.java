@@ -32,7 +32,7 @@ public class Manager extends Staff {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Staff) {
+        if (obj instanceof Manager) {
             Manager manager = (Manager) obj;
             if (this.getIdString().equals((manager.getIdString())) && this.getName().equals(manager.getName())
                     && this.getDayWork() == manager.getDayWork()) {

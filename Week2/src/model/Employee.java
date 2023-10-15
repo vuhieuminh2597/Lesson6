@@ -9,34 +9,13 @@ public abstract class Employee {
     private String phoneNumber;
     private int dayWork;
 
-    private List<Manager> superior = new ArrayList<>();//Cấp trên quản lý
+
 
     public Employee(String idString, String name, String phoneNumber, int dayWork) {
         this.idString = idString;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.dayWork = dayWork;
-    }
-
-    public void setSuperior(Manager manager) {
-        this.superior.add(manager);
-    }
-
-    public List<Manager> getSuperior() {
-        return this.superior;
-    }
-
-    public boolean deleteSuperior(Manager manager) {
-        if (manager != null) {
-            for (var read :
-                    superior) {
-                if (read.equals(manager)) {
-                    superior.remove(manager);
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void setIdString(String idString) {

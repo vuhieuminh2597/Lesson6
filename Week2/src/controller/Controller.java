@@ -13,10 +13,10 @@ public class Controller {
     }
 
     public void choiceFunction() {
-        Company companyModel ;
+        Company companyModel = null;
         List<Staff> staffList = new ArrayList<>(DataBase.dataEmployees());
         List<Manager> managerList = new ArrayList<>(DataBase.dataManager());
-        List<Director> directorList = new ArrayList<>();
+        List<Director> directorList = new ArrayList<>(DataBase.dataDirector());
         List<Employee> employees = new ArrayList<>();
         addAllEmployee(staffList, managerList, directorList, employees);
         Scanner input = new Scanner(System.in);
@@ -34,6 +34,9 @@ public class Controller {
                     var rsCompany = setInforCompany(input);
                     if (rsCompany != null) {
                         companyModel = rsCompany;
+                        if (!employees.isEmpty()){
+                            companyModel.setEmployeeList(employees);
+                        }
                         Text.printOut(companyModel.toString());
                         Text.textSuccess();
                     } else {
@@ -61,10 +64,10 @@ public class Controller {
                     }
                     break;
                 case 4:
-                    var superManager = setSuperManager(input);
-                    if (superManager != null) {
-                        directorList.add(superManager);
-                        Text.printOut(superManager.toString());
+                    var director = setDirector(input);
+                    if (director != null) {
+                        directorList.add(director);
+                        Text.printOut(director.toString());
                         Text.textSuccess();
                     } else {
                         Text.textFail();
@@ -76,14 +79,15 @@ public class Controller {
                     Text.printOut("Nhập ID nhân viên để thêm:");
                     var idStaff = input.nextLine();
                     var resultStaff = checkIdStaff(staffList, idStaff);
-
                     if (resultStaff != null) {
                         Text.printOut("Nhập ID trưởng phòng:");
                         var idManager = input.nextLine();
                         var resultManager = checkIdManager(managerList, idManager);
                         if (resultManager != null) {
                             if (addStaffFromManager(managerList, resultStaff, resultManager)) {
-                                Text.printOut(resultManager.getStaff().toString());
+                                resultStaff.setSuperior(resultManager);
+//                                Text.printOut(resultManager.getStaff().toString());
+//                                Text.printOut(resultStaff.getSuperior().toString());
                                 Text.textSuccess();
                             } else {
                                 Text.textFail();
@@ -98,7 +102,13 @@ public class Controller {
                 case 6:
                     ///Xoá nhân sự.
                     break;
-
+                case 7:
+                    if(companyModel != null){
+                        companyModel.getEmployeesList();
+                    }else {
+                        Text.printOut("Công ty không tồn tại.");
+                    }
+                    break;
                 default:
                     Text.textInputError();
                     break;
@@ -141,7 +151,7 @@ public class Controller {
         return new Manager(emp.getIdString(), emp.getName(), emp.getPhoneNumber(), emp.getDayWork());
     }
 
-    public Director setSuperManager(Scanner input) {
+    public Director setDirector(Scanner input) {
         Employee emp = setStaff(input);
         return new Director(emp.getIdString(), emp.getName(), emp.getPhoneNumber(), emp.getDayWork());
     }

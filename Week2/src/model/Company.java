@@ -45,7 +45,15 @@ public class Company {
     public void setEmployeeList(List<Employee> employees) {
         this.employeeList.addAll(employees);
     }
-
+    public void getEmployeesList(){
+        Text.printOut("Danh Sách nhân viên trong công ty:");
+        if(!this.employeeList.isEmpty()){
+            for (var read:
+                 this.employeeList) {
+                System.out.println(read.toString());
+            }
+        }
+    }
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Company) {
