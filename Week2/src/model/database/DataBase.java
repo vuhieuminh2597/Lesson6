@@ -1,10 +1,11 @@
 package model.database;
 
+import model.Manager;
 import model.Staff;
 import java.util.ArrayList;
 
 public class DataBase {
-    public ArrayList<Staff> dataEmployees(){
+    public static ArrayList<Staff> dataEmployees(){
         ArrayList<Staff> employeeList = new ArrayList<>();
         employeeList.add(new Staff("1","Vũ Minh Hiếu","0123456789",27));
         employeeList.add(new Staff("2","Phạm Văn Tuyến","0125465328",22));
@@ -17,5 +18,12 @@ public class DataBase {
         employeeList.add(new Staff("9","Lê Doãn Hiếu","01112456789",23));
         employeeList.add(new Staff("10","Nguyễn Bá Phượng","01234554545",22));
         return employeeList;
+    }
+
+    public static ArrayList<Manager> dataManager(){
+        ArrayList<Manager> managers = new ArrayList<>();
+        managers.add(new Manager("123153","Ngô Tất Thành","336336131331",26));
+        managers.add(new Manager("138592","Phạm Thành Long","0986685299",26));
+        return managers;
     }
 }

@@ -1,15 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Company {
     private String name;
     private String taxCode;
     private double monthRevenue;//Doanh thu tháng
-    private ArrayList<Staff> staffs = new ArrayList<>();
-    private ArrayList<Manager> managers = new ArrayList<>();
-    private ArrayList<SuperManager> superManagers = new ArrayList<>();
+    private List<Employee> employeeList = new ArrayList<>();
 
+    public Company() {
+    }
 
     public Company(String name, String taxCode, double monthRevenue) {
         this.name = name;
@@ -39,6 +40,10 @@ public class Company {
 
     public double getMonthRevenue() {
         return this.monthRevenue;
+    }
+
+    public void setEmployeeList(List<Employee> employees) {
+        this.employeeList.addAll(employees);
     }
 
     @Override

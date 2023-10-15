@@ -1,16 +1,42 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Employee {
     private String idString;
     private String name;
     private String phoneNumber;
     private int dayWork;
 
+    private List<Manager> superior = new ArrayList<>();//Cấp trên quản lý
+
     public Employee(String idString, String name, String phoneNumber, int dayWork) {
         this.idString = idString;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.dayWork = dayWork;
+    }
+
+    public void setSuperior(Manager manager) {
+        this.superior.add(manager);
+    }
+
+    public List<Manager> getSuperior() {
+        return this.superior;
+    }
+
+    public boolean deleteSuperior(Manager manager) {
+        if (manager != null) {
+            for (var read :
+                    superior) {
+                if (read.equals(manager)) {
+                    superior.remove(manager);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void setIdString(String idString) {
@@ -45,7 +71,7 @@ public abstract class Employee {
         return this.dayWork;
     }
 
-    public abstract String getduty();
+    public abstract String getDuty();
 
     @Override
     public boolean equals(Object obj) {
@@ -63,7 +89,7 @@ public abstract class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "idString='" + idString + '\'' +
+                "id='" + idString + '\'' +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", dayWork=" + dayWork +

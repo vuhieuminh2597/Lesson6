@@ -2,10 +2,13 @@ package model;
 
 public class Text {
     public static void textMenu() {
-        printOut("==================== Functions: =====================");//Vui lòng chọn chức năng
-        printOut("= 1.Add company information                           =");//Nhập thông tin công ty
-        printOut("= 2.Add,Repair,Delete personal information...         =");//Thêm sửa xóa
-        printOut("= 0.Exit                                              =");
+        printOut("==================== Functions: =====================");
+        printOut("= 1.Nhập thông tin công ty                          =");
+        printOut("= 2.Thêm mới nhân viên.                             =");
+        printOut("= 3.Thêm mới trưởng phòng.                          =");
+        printOut("= 4.Thêm mới giám đốc.                              =");
+        printOut("= 5.Phân bổ nhân viên vào trưởng phòng.             =");
+        printOut("= 6.Xóa nhân sự.                                    =");
         stringLine();
         textChoice();
     }
@@ -34,7 +37,7 @@ public class Text {
         System.out.println("==========> Fail <===========");
     }
 
-    public static void textInputError(){
+    public static void textInputError() {
         System.out.println("========> Invalid input <=========");
     }
 }

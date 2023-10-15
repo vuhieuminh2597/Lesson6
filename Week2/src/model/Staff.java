@@ -8,11 +8,6 @@ public class Staff extends Employee implements Calculable {
         super(idString, name, phoneNumber, dayWork);
     }
 
-    public Staff(String idString, String name, String phoneNumber, int dayWork, double totalSalary) {
-        super(idString, name, phoneNumber, dayWork);
-        this.totalSalary = totalSalary;
-    }
-
     public void setTotalSalary(double salary) {
         this.totalSalary = salary;
     }
@@ -22,7 +17,7 @@ public class Staff extends Employee implements Calculable {
     }
 
     @Override
-    public String getduty() {
+    public String getDuty() {
         return "Staff";
     }
 
@@ -34,10 +29,25 @@ public class Staff extends Employee implements Calculable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Staff) {
+            Staff staff = (Staff) obj;
+            if (this.getIdString().equals((staff.getIdString())) && this.getName().equals(staff.getName())
+                    && this.getDayWork() == staff.getDayWork()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
-        super.toString();
         return "Staff{" +
-                "totalSalary=" + totalSalary +
+                "id='" + super.getIdString() + '\'' +
+                ", name='" + super.getName() + '\'' +
+                ", phoneNumber='" + super.getPhoneNumber() + '\'' +
+                ", dayWork=" + super.getDayWork() +
+                ", duty=" + this.getDuty() +
                 '}';
     }
 }
