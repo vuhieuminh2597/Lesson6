@@ -31,7 +31,7 @@ public class DataBase {
 
     public static ArrayList<Director> dataDirector() {
         ArrayList<Director> directors = new ArrayList<>();
-        directors.add(new Director("999999", "Trương Minh Tài", "0987643323", 27));
+        directors.add(new Director("999999", "Trương Minh Tài", "0987643323", 27, 30.0));
         return directors;
     }
 }

@@ -3,17 +3,17 @@ package model;
 import java.util.ArrayList;
 
 public class Manager extends Staff {
-    private ArrayList<Staff> underControl = new ArrayList<>();//Nhân viên dưới quyền
+    private ArrayList<Employee> underControl = new ArrayList<>();//Nhân viên dưới quyền
 
     public Manager(String idString, String name, String phoneNumber, int dayWork) {
         super(idString, name, phoneNumber, dayWork);
     }
 
-    public ArrayList<Staff> getStaff() {
+    public ArrayList<Employee> getStaff() {
         return underControl;
     }
 
-    public void setStaff(Staff staff) {
+    public void setStaff(Employee staff) {
         this.underControl.add(staff);
     }
 
@@ -24,6 +24,26 @@ public class Manager extends Staff {
     @Override
     public String getDuty() {
         return "Manager";
+    }
+
+    @Override
+    public void delete(Employee employee) {
+        Employee employee1 = isExit(employee);
+        if (employee1 != null){
+            this.underControl.remove(employee);
+        }
+    }
+
+    public Employee isExit (Employee employee){
+        if (!this.underControl.isEmpty()){
+            for (var read:
+                    underControl) {
+                if (read.equals(employee)){
+                    return read;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
@@ -48,8 +68,9 @@ public class Manager extends Staff {
                 "id='" + super.getIdString() + '\'' +
                 ", name='" + super.getName() + '\'' +
                 ", phoneNumber='" + super.getPhoneNumber() + '\'' +
-                ", dayWork=" + super.getDayWork() +
-                ", duty=" + this.getDuty() +
+                ", dayWork='" + super.getDayWork() + '\'' +
+                ", duty='" + this.getDuty() + '\'' +
+                ", underControll='" + this.underControl.size() + '\'' +
                 '}';
     }
 }

@@ -1,8 +1,11 @@
 package model;
 
 public class Director extends Manager {
-    public Director(String idString, String name, String phoneNumber, int dayWork) {
+    private double ownerShipPercentage;
+
+    public Director(String idString, String name, String phoneNumber, int dayWork, double ownerShipPercentage) {
         super(idString, name, phoneNumber, dayWork);
+        this.ownerShipPercentage = ownerShipPercentage;
     }
 
     @Override
@@ -30,8 +33,9 @@ public class Director extends Manager {
                 "id='" + super.getIdString() + '\'' +
                 ", name='" + super.getName() + '\'' +
                 ", phoneNumber='" + super.getPhoneNumber() + '\'' +
-                ", dayWork=" + super.getDayWork() +
-                ", duty=" + this.getDuty() +
+                ", dayWork='" + super.getDayWork() +
+                ", duty='" + this.getDuty() + '\'' +
+                ", percentage='" + this.ownerShipPercentage + '\'' +
                 '}';
     }
 }

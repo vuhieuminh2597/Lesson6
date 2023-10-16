@@ -48,6 +48,26 @@ public class Staff extends Employee implements Calculable {
     }
 
     @Override
+    public void delete(Employee employee) {
+        Employee employee1 = isExit(employee);
+        if (employee1 != null){
+            this.superior.remove(employee1);
+        }
+    }
+
+    public Employee isExit (Employee employee){
+        if (!this.superior.isEmpty()){
+            for (var read:
+                 superior) {
+                if (read.equals(employee)){
+                    return read;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void calculateSalary() {
         if (this.getDayWork() > 0) {
             this.totalSalary = this.getDayWork() * SALARY_PER_WORKING_DAY;
@@ -72,8 +92,9 @@ public class Staff extends Employee implements Calculable {
                 "id='" + super.getIdString() + '\'' +
                 ", name='" + super.getName() + '\'' +
                 ", phoneNumber='" + super.getPhoneNumber() + '\'' +
-                ", dayWork=" + super.getDayWork() +
-                ", duty=" + this.getDuty() +
+                ", dayWork='" + super.getDayWork() + '\'' +
+                ", duty='" + this.getDuty() + '\'' +
+                ", superior='" + this.superior.size() + '\'' +
                 '}';
     }
 }

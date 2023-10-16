@@ -45,15 +45,120 @@ public class Company {
     public void setEmployeeList(List<Employee> employees) {
         this.employeeList.addAll(employees);
     }
-    public void getEmployeesList(){
-        Text.printOut("Danh Sách nhân viên trong công ty:");
-        if(!this.employeeList.isEmpty()){
-            for (var read:
-                 this.employeeList) {
-                System.out.println(read.toString());
+
+    public List<Employee> getEmployeeList() {
+        return this.employeeList;
+    }
+
+    public void showStaffInCompany() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Nhân viên:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Staff")) {
+                    System.out.println(read.toString());
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void showManagerInCompany() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Trưởng phòng:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Manager")) {
+                    System.out.println(read.toString());
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void showDirectorInCompany() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Giám đốc:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Director")) {
+                    System.out.println(read.toString());
+                }
             }
         }
     }
+
+    public boolean deletePersonnel(String id) {
+        Employee emp = isExit1(id);
+        if (emp != null) {
+            update(emp);
+            this.employeeList.remove(emp);
+            return true;
+        }
+        return false;
+    }
+
+    public void update(Employee employee) {
+        if (!this.employeeList.isEmpty()) {
+            for (var read :
+                    employeeList) {
+                read.delete(employee);
+            }
+        }
+    }
+
+    public boolean addStaff(Staff staff) {
+        if (staff != null) {
+            if (!isExit(staff.getIdString())) {
+                this.employeeList.add(staff);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addManager(Manager manager) {
+        if (manager != null) {
+            if (!isExit(manager.getIdString())) {
+                this.employeeList.add(manager);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public boolean addDirector(Director director) {
+        if (director != null) {
+            if (!isExit(director.getIdString())) {
+                this.employeeList.add(director);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Employee isExit1(String id) {
+        for (var read :
+                this.employeeList) {
+            if (read.getIdString().equals(id)) {
+                return read;
+            }
+        }
+        return null;
+    }
+
+    public boolean isExit(String id) {
+        for (var read :
+                this.employeeList) {
+            if (read.getIdString().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Company) {

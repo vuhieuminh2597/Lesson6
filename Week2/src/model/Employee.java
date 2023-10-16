@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Employee {
     private String idString;
     private String name;
@@ -51,7 +48,7 @@ public abstract class Employee {
     }
 
     public abstract String getDuty();
-
+    public abstract void delete(Employee obj);
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Employee) {

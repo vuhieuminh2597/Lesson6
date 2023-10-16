@@ -8,19 +8,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
+    private Company companyModel;
+    private List<Employee> employees = new ArrayList<>();
 
     public Controller() {
-    }
-
-    public void choiceFunction() {
-        Company companyModel = null;
+        companyModel = null;
         List<Staff> staffList = new ArrayList<>(DataBase.dataEmployees());
         List<Manager> managerList = new ArrayList<>(DataBase.dataManager());
         List<Director> directorList = new ArrayList<>(DataBase.dataDirector());
-        List<Employee> employees = new ArrayList<>();
         addAllEmployee(staffList, managerList, directorList, employees);
-        Scanner input = new Scanner(System.in);
+    }
 
+    public void choiceFunction() {
+        Scanner input = new Scanner(System.in);
         int choice = 0;
         do {
             Text.textMenu();
@@ -34,7 +34,7 @@ public class Controller {
                     var rsCompany = setInforCompany(input);
                     if (rsCompany != null) {
                         companyModel = rsCompany;
-                        if (!employees.isEmpty()){
+                        if (!employees.isEmpty()) {
                             companyModel.setEmployeeList(employees);
                         }
                         Text.printOut(companyModel.toString());
@@ -44,68 +44,99 @@ public class Controller {
                     }
                     break;
                 case 2:
-                    var staff = setStaff(input);
-                    if (staff != null) {
-                        staffList.add(staff);
-                        Text.printOut(staff.toString());
-                        Text.textSuccess();
+                    if (companyModel != null) {
+                        var staff = setStaff(input);
+                        if (staff != null) {
+                            if (companyModel.addStaff(staff)) {
+                                Text.textSuccess();
+                            } else {
+                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
+                            }
+                        } else {
+                            Text.textFail();
+                        }
                     } else {
-                        Text.textFail();
+                        Text.printOut("Hãy nhập thông tin công ty trước.");
                     }
                     break;
                 case 3:
-                    var manager = setManager(input);
-                    if (manager != null) {
-                        managerList.add(manager);
-                        Text.printOut(manager.toString());
-                        Text.textSuccess();
-                    } else {
-                        Text.textFail();
-                    }
-                    break;
-                case 4:
-                    var director = setDirector(input);
-                    if (director != null) {
-                        directorList.add(director);
-                        Text.printOut(director.toString());
-                        Text.textSuccess();
-                    } else {
-                        Text.textFail();
-                    }
-                    break;
-                case 5:
-                    showListStaff(staffList);
-                    showListManager(managerList);
-                    Text.printOut("Nhập ID nhân viên để thêm:");
-                    var idStaff = input.nextLine();
-                    var resultStaff = checkIdStaff(staffList, idStaff);
-                    if (resultStaff != null) {
-                        Text.printOut("Nhập ID trưởng phòng:");
-                        var idManager = input.nextLine();
-                        var resultManager = checkIdManager(managerList, idManager);
-                        if (resultManager != null) {
-                            if (addStaffFromManager(managerList, resultStaff, resultManager)) {
-                                resultStaff.setSuperior(resultManager);
-//                                Text.printOut(resultManager.getStaff().toString());
-//                                Text.printOut(resultStaff.getSuperior().toString());
+                    if (companyModel != null) {
+                        var manager = setManager(input);
+                        if (manager != null) {
+                            if (companyModel.addManager(manager)) {
                                 Text.textSuccess();
                             } else {
-                                Text.textFail();
+                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
                             }
                         } else {
-                            Text.printOut("ID trưởng phòng không đúng hoặc không tồn tại!");
+                            Text.textFail();
                         }
                     } else {
-                        Text.printOut("ID viên không đúng hoặc không tồn tại!");
+                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                    }
+
+                    break;
+                case 4:
+                    if (companyModel != null) {
+                        var director = setDirector(input);
+                        if (director != null) {
+                            if (companyModel.addDirector(director)) {
+                                Text.textSuccess();
+                            } else {
+                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
+                            }
+                        } else {
+                            Text.textFail();
+                        }
+                    } else {
+                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                    }
+
+                    break;
+                case 5:
+                    if (companyModel != null) {
+                        Text.printOut("Nhập ID nhân viên để thêm:");
+                        var idStaff = input.nextLine();
+                        var resultStaff = checkIdStaff(companyModel.getEmployeeList(), idStaff);
+                        if (resultStaff != null) {
+                            Text.printOut("Nhập ID trưởng phòng:");
+                            var idManager = input.nextLine();
+                            var resultManager = checkIdManager(companyModel.getEmployeeList(), idManager);
+                            if (resultManager != null) {
+                                if (addStaffFromManager(companyModel.getEmployeeList(), resultStaff, resultManager)) {
+                                    resultStaff.setSuperior(resultManager);
+                                    Text.textSuccess();
+                                } else {
+                                    Text.textFail();
+                                }
+                            } else {
+                                Text.printOut("ID trưởng phòng không đúng hoặc không tồn tại!");
+                            }
+                        } else {
+                            Text.printOut("ID nhân viên không đúng hoặc không tồn tại!");
+                        }
+                    } else {
+                        Text.printOut("Hãy nhập thông tin công ty trước.");
                     }
                     break;
                 case 6:
-                    ///Xoá nhân sự.
+                    if (companyModel != null) {
+                        Text.printOut("Vui Lòng nhập số id nhân sự để xóa:");
+                        var inputId = input.nextLine();
+                        if (companyModel.deletePersonnel(inputId)) {
+                            Text.textSuccess();
+                        } else {
+                            Text.printOut("ID không đúng hoặc không tồn tại!");
+                        }
+                        companyModel.deletePersonnel(inputId);
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
+                    }
                     break;
                 case 7:
-                    if(companyModel != null){
-                        companyModel.getEmployeesList();
-                    }else {
+                    if (companyModel != null) {
+                        showAllEmp();
+                    } else {
                         Text.printOut("Công ty không tồn tại.");
                     }
                     break;
@@ -153,16 +184,9 @@ public class Controller {
 
     public Director setDirector(Scanner input) {
         Employee emp = setStaff(input);
-        return new Director(emp.getIdString(), emp.getName(), emp.getPhoneNumber(), emp.getDayWork());
-    }
-
-    public double checkInputDouble(Scanner input) {
-        double number = 0;
-        while (!input.hasNextInt()) {
-            System.out.println("That's not a integer number,retry!");
-            input.next();
-        }
-        return number = input.nextDouble();
+        Text.printOut("Add owner ship percentage :");
+        var percen = input.nextDouble();
+        return new Director(emp.getIdString(), emp.getName(), emp.getPhoneNumber(), emp.getDayWork(), percen);
     }
 
     public int checkInputInteger(Scanner input) {
@@ -174,54 +198,48 @@ public class Controller {
         return number = input.nextInt();
     }
 
-    public void showListStaff(List<Staff> employees) {
-        System.out.println("Danh sách nhân viên:");
-        for (var emp :
-                employees) {
-            System.out.println(emp.toString());
+    public double checkInputDouble(Scanner input) {
+        double number = 0.0;
+        while (!input.hasNextDouble()) {
+            Text.printOut("That's not a double number,retry!");
+            input.next();
         }
-        System.out.println();
+        return number = input.nextDouble();
     }
 
-    public void showListManager(List<Manager> managers) {
-        System.out.println("Danh sách trưởng phòng:");
-        for (var man :
-                managers) {
-            System.out.println(man.toString());
-        }
-        System.out.println();
-    }
-
-    public Staff checkIdStaff(List<Staff> emp, String id) {
+    public Staff checkIdStaff(List<Employee> emp, String id) {
         if (!emp.isEmpty()) {
             for (var read :
                     emp) {
-                if (read.getIdString().equals(id)) {
-                    return read;
+                if (read.getIdString().equals(id) &&
+                        read.getDuty().equals("Staff")) {
+                    return (Staff) read;
                 }
             }
         }
         return null;
     }
 
-    public Manager checkIdManager(List<Manager> managers, String id) {
-        if (!managers.isEmpty()) {
+    public Manager checkIdManager(List<Employee> emp, String id) {
+        if (!emp.isEmpty()) {
             for (var read :
-                    managers) {
-                if (read.getIdString().equals(id)) {
-                    return read;
+                    emp) {
+                if (read.getIdString().equals(id)
+                        && read.getDuty().equals("Manager")) {
+                    return (Manager) read;
                 }
             }
         }
         return null;
     }
 
-    public boolean addStaffFromManager(List<Manager> managers, Staff staff, Manager manager) {
+    public boolean addStaffFromManager(List<Employee> managers, Staff staff, Manager manager) {
         if (!managers.isEmpty()) {
             for (var read :
                     managers) {
-                if (read.equals(manager)) {
-                    read.setStaff(staff);
+                if (read.equals(manager) && read.getDuty().equals("Manager")) {
+                    Manager man = (Manager) read;
+                    man.setStaff(staff);
                     return true;
                 }
             }
@@ -240,5 +258,10 @@ public class Controller {
         if (!directors.isEmpty()) {
             employees.addAll(directors);
         }
+    }
+    public void showAllEmp() {
+        companyModel.showStaffInCompany();
+        companyModel.showManagerInCompany();
+        companyModel.showDirectorInCompany();
     }
 }
