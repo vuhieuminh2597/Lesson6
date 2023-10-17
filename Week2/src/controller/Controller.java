@@ -143,6 +143,17 @@ public class Controller {
                 default:
                     Text.textInputError();
                     break;
+                case 8:
+                    if (companyModel != null){
+                        if (!companyModel.getEmployeeList().isEmpty()){
+                            for (var read:
+                                 companyModel.getEmployeeList()) {
+                                read.calculateSalary();
+                            }
+                            showAllEmp();
+                        }
+                    }
+                    break;
             }
         } while (choice != 0);
     }

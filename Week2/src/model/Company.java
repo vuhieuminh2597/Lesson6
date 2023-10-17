@@ -148,6 +148,16 @@ public class Company {
         return null;
     }
 
+    public Employee isExit() {
+        for (var read :
+                this.employeeList) {
+            if (read.getDuty().equals("Staff")) {
+                return read;
+            }
+        }
+        return null;
+    }
+
     public boolean isExit(String id) {
         for (var read :
                 this.employeeList) {
@@ -158,6 +168,9 @@ public class Company {
         return false;
     }
 
+    public void findSalary() {
+        
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -179,4 +192,5 @@ public class Company {
                 ", monthRevenue=" + monthRevenue +
                 '}';
     }
+
 }

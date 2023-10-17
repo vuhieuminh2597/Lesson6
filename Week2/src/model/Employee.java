@@ -7,7 +7,6 @@ public abstract class Employee {
     private int dayWork;
 
 
-
     public Employee(String idString, String name, String phoneNumber, int dayWork) {
         this.idString = idString;
         this.name = name;
@@ -48,7 +47,13 @@ public abstract class Employee {
     }
 
     public abstract String getDuty();
+
     public abstract void delete(Employee obj);
+
+    public void calculateSalary() {
+
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Employee) {

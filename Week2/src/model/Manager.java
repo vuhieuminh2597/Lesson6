@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Manager extends Staff {
+    private static final double SALARY_PER_WORKING_DAY = 200.0;
     private ArrayList<Employee> underControl = new ArrayList<>();//Nhân viên dưới quyền
 
     public Manager(String idString, String name, String phoneNumber, int dayWork) {
@@ -29,16 +30,16 @@ public class Manager extends Staff {
     @Override
     public void delete(Employee employee) {
         Employee employee1 = isExit(employee);
-        if (employee1 != null){
+        if (employee1 != null) {
             this.underControl.remove(employee);
         }
     }
 
-    public Employee isExit (Employee employee){
-        if (!this.underControl.isEmpty()){
-            for (var read:
+    public Employee isExit(Employee employee) {
+        if (!this.underControl.isEmpty()) {
+            for (var read :
                     underControl) {
-                if (read.equals(employee)){
+                if (read.equals(employee)) {
                     return read;
                 }
             }
@@ -48,6 +49,10 @@ public class Manager extends Staff {
 
     @Override
     public void calculateSalary() {
+        if (super.getDayWork() > 0) {
+            double bonus = 100 * underControl.size();
+            super.setTotalSalary(SALARY_PER_WORKING_DAY * super.getDayWork() + bonus);
+        }
     }
 
     @Override
@@ -71,6 +76,7 @@ public class Manager extends Staff {
                 ", dayWork='" + super.getDayWork() + '\'' +
                 ", duty='" + this.getDuty() + '\'' +
                 ", underControll='" + this.underControl.size() + '\'' +
+                ", salary='" + super.getTotalSalary() + '\'' +
                 '}';
     }
 }

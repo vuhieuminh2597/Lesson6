@@ -50,16 +50,16 @@ public class Staff extends Employee implements Calculable {
     @Override
     public void delete(Employee employee) {
         Employee employee1 = isExit(employee);
-        if (employee1 != null){
+        if (employee1 != null) {
             this.superior.remove(employee1);
         }
     }
 
-    public Employee isExit (Employee employee){
-        if (!this.superior.isEmpty()){
-            for (var read:
-                 superior) {
-                if (read.equals(employee)){
+    public Employee isExit(Employee employee) {
+        if (!this.superior.isEmpty()) {
+            for (var read :
+                    superior) {
+                if (read.equals(employee)) {
                     return read;
                 }
             }
@@ -95,6 +95,7 @@ public class Staff extends Employee implements Calculable {
                 ", dayWork='" + super.getDayWork() + '\'' +
                 ", duty='" + this.getDuty() + '\'' +
                 ", superior='" + this.superior.size() + '\'' +
+                ", salary='" + this.getTotalSalary() + '\'' +
                 '}';
     }
 }

@@ -2,6 +2,7 @@ package model;
 
 public class Director extends Manager {
     private double ownerShipPercentage;
+    private static final double SALARY_PER_WORKING_DAY = 300.0;
 
     public Director(String idString, String name, String phoneNumber, int dayWork, double ownerShipPercentage) {
         super(idString, name, phoneNumber, dayWork);
@@ -11,6 +12,13 @@ public class Director extends Manager {
     @Override
     public String getDuty() {
         return "Director";
+    }
+
+    @Override
+    public void calculateSalary() {
+        if (super.getDayWork() > 0) {
+            super.setTotalSalary(SALARY_PER_WORKING_DAY * super.getDayWork());
+        }
     }
 
     @Override
@@ -35,7 +43,8 @@ public class Director extends Manager {
                 ", phoneNumber='" + super.getPhoneNumber() + '\'' +
                 ", dayWork='" + super.getDayWork() +
                 ", duty='" + this.getDuty() + '\'' +
-                ", percentage='" + this.ownerShipPercentage + '\'' +
+                ", percentage='" + this.ownerShipPercentage + "%" + '\'' +
+                ", salary='" + super.getTotalSalary() + '\'' +
                 '}';
     }
 }
