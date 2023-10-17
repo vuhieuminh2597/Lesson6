@@ -63,6 +63,44 @@ public class Company {
         }
     }
 
+    public List<Employee> findUnderControl(){
+        List<Employee> emp = new ArrayList<>();
+        for (var read :
+                this.employeeList) {
+            if (read.getDuty().equals("Manager")) {
+                emp.add(read);
+            }
+        }
+        return emp;
+    }
+
+    public void resultUnderControl(){
+
+    }
+
+    public void showSalaryStaffInCompany() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Nhân viên:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Staff")) {
+                    System.out.println(read.showSalaryStaffs());
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void showSalaryAll(){
+        if(!this.employeeList.isEmpty()){
+            Text.printOut("Bảng lương theo thứ tự giảm dần toàn công ty:");
+            for (var read:
+                 employeeList) {
+                System.out.println(read.showSalaryStaffs());
+            }
+        }
+    }
+
     public void showManagerInCompany() {
         if (!this.employeeList.isEmpty()) {
             System.out.println("Trưởng phòng:");
@@ -148,14 +186,11 @@ public class Company {
         return null;
     }
 
-    public Employee isExit() {
-        for (var read :
-                this.employeeList) {
-            if (read.getDuty().equals("Staff")) {
-                return read;
-            }
+    public boolean isExit(Employee employee) {
+        if (employee.getDuty().equals("Staff")) {
+            return true;
         }
-        return null;
+        return false;
     }
 
     public boolean isExit(String id) {
@@ -168,8 +203,18 @@ public class Company {
         return false;
     }
 
-    public void findSalary() {
-        
+    public void findHightSalary() {
+        if (!this.employeeList.isEmpty()) {
+            for (int i = 0; i < employeeList.size(); i++) {
+                for (int j = employeeList.size() - 1; j > i; j--) {
+                    if (employeeList.get(i).getTotalSalary() < employeeList.get(j).getTotalSalary()) {
+                        Employee emp = employeeList.get(i);
+                        employeeList.set(i, employeeList.get(j));
+                        employeeList.set(j, emp);
+                    }
+                }
+            }
+        }
     }
 
     @Override

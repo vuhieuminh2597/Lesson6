@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Employee {
+public abstract class Employee implements Calculable {
     private String idString;
     private String name;
     private String phoneNumber;
@@ -50,8 +50,10 @@ public abstract class Employee {
 
     public abstract void delete(Employee obj);
 
+    public abstract double getTotalSalary();
+    public abstract String showSalaryStaffs();
+    @Override
     public void calculateSalary() {
-
     }
 
     @Override

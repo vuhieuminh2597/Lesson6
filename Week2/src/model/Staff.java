@@ -17,6 +17,7 @@ public class Staff extends Employee implements Calculable {
         this.totalSalary = salary;
     }
 
+    @Override
     public double getTotalSalary() {
         return this.totalSalary;
     }
@@ -66,6 +67,11 @@ public class Staff extends Employee implements Calculable {
         }
         return null;
     }
+    @Override
+    public String showSalaryStaffs(){
+        return "Id:" + super.getIdString() + "   Name:" + super.getName()
+                + "     Salary:" + getTotalSalary();
+    }
 
     @Override
     public void calculateSalary() {
@@ -98,4 +104,5 @@ public class Staff extends Employee implements Calculable {
                 ", salary='" + this.getTotalSalary() + '\'' +
                 '}';
     }
+
 }

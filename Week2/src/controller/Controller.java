@@ -140,19 +140,42 @@ public class Controller {
                         Text.printOut("Công ty không tồn tại.");
                     }
                     break;
-                default:
-                    Text.textInputError();
-                    break;
                 case 8:
-                    if (companyModel != null){
-                        if (!companyModel.getEmployeeList().isEmpty()){
-                            for (var read:
-                                 companyModel.getEmployeeList()) {
+                    if (companyModel != null) {
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+                            for (var read :
+                                    companyModel.getEmployeeList()) {
                                 read.calculateSalary();
                             }
                             showAllEmp();
                         }
                     }
+                    break;
+                case 9:
+                    if (companyModel != null) {
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+                            companyModel.findHightSalary();
+                            showStaffs();
+                        }
+                    }
+                    break;
+                case 10:
+                    if (companyModel != null) {
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+                            companyModel.findHightSalary();
+                            companyModel.showSalaryAll();
+                        }
+                    }
+                    break;
+                case 11:
+                    if (companyModel != null){
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+
+                        }
+                    }
+                    break;
+                default:
+                    Text.textInputError();
                     break;
             }
         } while (choice != 0);
@@ -196,7 +219,10 @@ public class Controller {
     public Director setDirector(Scanner input) {
         Employee emp = setStaff(input);
         Text.printOut("Add owner ship percentage :");
-        var percen = input.nextDouble();
+        var percen = checkInputDouble(input);
+        if (percen < 0 || percen > 100.0) {
+            percen = 0.0;
+        }
         return new Director(emp.getIdString(), emp.getName(), emp.getPhoneNumber(), emp.getDayWork(), percen);
     }
 
@@ -217,6 +243,7 @@ public class Controller {
         }
         return number = input.nextDouble();
     }
+
 
     public Staff checkIdStaff(List<Employee> emp, String id) {
         if (!emp.isEmpty()) {
@@ -270,9 +297,14 @@ public class Controller {
             employees.addAll(directors);
         }
     }
+
     public void showAllEmp() {
         companyModel.showStaffInCompany();
         companyModel.showManagerInCompany();
         companyModel.showDirectorInCompany();
+    }
+
+    public void showStaffs() {
+        companyModel.showSalaryStaffInCompany();
     }
 }

@@ -56,6 +56,11 @@ public class Manager extends Staff {
     }
 
     @Override
+    public double getTotalSalary() {
+        return super.getTotalSalary();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Manager) {
             Manager manager = (Manager) obj;
@@ -68,6 +73,11 @@ public class Manager extends Staff {
     }
 
     @Override
+    public String showSalaryStaffs() {
+        return super.showSalaryStaffs();
+    }
+
+    @Override
     public String toString() {
         return "Manager{" +
                 "id='" + super.getIdString() + '\'' +
@@ -76,7 +86,7 @@ public class Manager extends Staff {
                 ", dayWork='" + super.getDayWork() + '\'' +
                 ", duty='" + this.getDuty() + '\'' +
                 ", underControll='" + this.underControl.size() + '\'' +
-                ", salary='" + super.getTotalSalary() + '\'' +
+                ", salary='" + getTotalSalary() + '\'' +
                 '}';
     }
 }

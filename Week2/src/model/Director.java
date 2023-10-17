@@ -22,6 +22,11 @@ public class Director extends Manager {
     }
 
     @Override
+    public double getTotalSalary() {
+        return super.getTotalSalary();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Director) {
             Director dir = (Director) obj;
@@ -36,6 +41,11 @@ public class Director extends Manager {
     }
 
     @Override
+    public String showSalaryStaffs() {
+        return super.showSalaryStaffs();
+    }
+
+    @Override
     public String toString() {
         return "Director{" +
                 "id='" + super.getIdString() + '\'' +
@@ -44,7 +54,7 @@ public class Director extends Manager {
                 ", dayWork='" + super.getDayWork() +
                 ", duty='" + this.getDuty() + '\'' +
                 ", percentage='" + this.ownerShipPercentage + "%" + '\'' +
-                ", salary='" + super.getTotalSalary() + '\'' +
+                ", salary='" + getTotalSalary() + '\'' +
                 '}';
     }
 }

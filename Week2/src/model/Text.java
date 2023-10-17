@@ -2,16 +2,18 @@ package model;
 
 public class Text {
     public static void textMenu() {
-        printOut("==================== Functions: =====================");
-        printOut("= 1.Nhập thông tin công ty                          =");
-        printOut("= 2.Thêm mới nhân viên.                             =");
-        printOut("= 3.Thêm mới trưởng phòng.                          =");
-        printOut("= 4.Thêm mới giám đốc.                              =");
-        printOut("= 5.Phân bổ nhân viên vào trưởng phòng.             =");
-        printOut("= 6.Xóa nhân sự.                                    =");
-        printOut("= 7.Xuất thông tin toàn bộ nhân viên trong cty      =");
-        printOut("= 8.Tính và xuất tổng lương cho toàn công ty.       =");
-        printOut("= 9.Tìm Nhân viên thường có lương cao nhất          =");
+        printOut("========================= Functions: ===========================");
+        printOut("= 1.Nhập thông tin công ty                                     =");
+        printOut("= 2.Thêm mới nhân viên.                                        =");
+        printOut("= 3.Thêm mới trưởng phòng.                                     =");
+        printOut("= 4.Thêm mới giám đốc.                                         =");
+        printOut("= 5.Phân bổ nhân viên vào trưởng phòng.                        =");
+        printOut("= 6.Xóa nhân sự.                                               =");
+        printOut("= 7.Xuất thông tin toàn bộ nhân viên trong cty                 =");
+        printOut("= 8.Tính và xuất tổng lương cho toàn công ty.                  =");
+        printOut("= 9.Tìm Nhân viên thường có lương cao nhất.                    =");
+        printOut("= 10.Sắp xếp nhân viên toàn công ty theo thứ tự lương giảm dần.=");
+        printOut("= 11.Trưởng Phòng có số lượng nhân viên dưới quyền nhiều nhất. =");
         stringLine();
         textChoice();
     }
