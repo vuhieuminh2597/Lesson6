@@ -27,6 +27,17 @@ public class Director extends Manager {
     }
 
     @Override
+    public String showPercen() {
+        return "Id:" + super.getIdString() + "   Name:" + super.getName() + "  Percentage:" + ownerShipPercentage
+                 + "%";
+    }
+
+    @Override
+    public String showString(){
+        return "Id:" + super.getIdString() + "   Name:" + super.getName() + " Salary:" + super.getTotalSalary();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Director) {
             Director dir = (Director) obj;
@@ -38,6 +49,11 @@ public class Director extends Manager {
             }
         }
         return false;
+    }
+
+    @Override
+    public double getPercentage() {
+        return ownerShipPercentage;
     }
 
     @Override

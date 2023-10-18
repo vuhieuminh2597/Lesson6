@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Employee implements Calculable {
+public abstract class Employee implements Calculable,Viewable {
     private String idString;
     private String name;
     private String phoneNumber;
@@ -52,10 +52,17 @@ public abstract class Employee implements Calculable {
 
     public abstract double getTotalSalary();
     public abstract String showSalaryStaffs();
+    public abstract String showControll();
+
+    public abstract String showPercen();
+    public abstract int get();
     @Override
     public void calculateSalary() {
     }
-
+    @Override
+    public String showString(){
+        return "";
+    }
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Employee) {

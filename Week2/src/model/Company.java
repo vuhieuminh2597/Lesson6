@@ -63,18 +63,35 @@ public class Company {
         }
     }
 
-    public List<Employee> findUnderControl(){
-        List<Employee> emp = new ArrayList<>();
-        for (var read :
-                this.employeeList) {
-            if (read.getDuty().equals("Manager")) {
-                emp.add(read);
+    public void sortUnderControl() {
+        if (!this.employeeList.isEmpty()) {
+            for (int i = 0; i < employeeList.size(); i++) {
+                for (int j = employeeList.size() - 1; j > i; j--) {
+                    if (employeeList.get(i).get() < employeeList.get(j).get()) {
+                        Employee emp = employeeList.get(i);
+                        employeeList.set(i, employeeList.get(j));
+                        employeeList.set(j, emp);
+                    }
+                }
             }
         }
-        return emp;
     }
 
-    public void resultUnderControl(){
+    public void sortPercentage() {
+        if (!this.employeeList.isEmpty()) {
+            for (int i = 0; i < employeeList.size(); i++) {
+                for (int j = employeeList.size() - 1; j > i; j--) {
+                    if (employeeList.get(i).getPercentage() < employeeList.get(j).getPercentage()) {
+                        Employee emp = employeeList.get(i);
+                        employeeList.set(i, employeeList.get(j));
+                        employeeList.set(j, emp);
+                    }
+                }
+            }
+        }
+    }
+
+    public void resultUnderControl() {
 
     }
 
@@ -91,11 +108,11 @@ public class Company {
         }
     }
 
-    public void showSalaryAll(){
-        if(!this.employeeList.isEmpty()){
+    public void showSalaryAll() {
+        if (!this.employeeList.isEmpty()) {
             Text.printOut("Bảng lương theo thứ tự giảm dần toàn công ty:");
-            for (var read:
-                 employeeList) {
+            for (var read :
+                    employeeList) {
                 System.out.println(read.showSalaryStaffs());
             }
         }
@@ -114,6 +131,19 @@ public class Company {
         }
     }
 
+    public void showManagerControll() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Trưởng phòng:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Manager")) {
+                    System.out.println(read.showControll());
+                }
+            }
+            System.out.println();
+        }
+    }
+
     public void showDirectorInCompany() {
         if (!this.employeeList.isEmpty()) {
             System.out.println("Giám đốc:");
@@ -121,6 +151,41 @@ public class Company {
                     this.employeeList) {
                 if (read.getDuty().equals("Director")) {
                     System.out.println(read.toString());
+                }
+            }
+        }
+    }
+
+    public void calculateSalaryDirector() {
+        if (!this.employeeList.isEmpty()) {
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Director")) {
+                   read.calculateSalary();
+                }
+            }
+        }
+    }
+
+    public void showDirectorSalary() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Giám đốc:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Director")) {
+                    System.out.println(read.showString());
+                }
+            }
+        }
+    }
+
+    public void showDirectorPercentage() {
+        if (!this.employeeList.isEmpty()) {
+            System.out.println("Giám đốc:");
+            for (var read :
+                    this.employeeList) {
+                if (read.getDuty().equals("Director")) {
+                    System.out.println(read.showPercen());
                 }
             }
         }

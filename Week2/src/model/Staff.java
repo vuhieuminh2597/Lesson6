@@ -26,10 +26,11 @@ public class Staff extends Employee implements Calculable {
         this.superior.add(manager);
     }
 
-    public List<Manager> getSuperior() {
-        return this.superior;
-    }
 
+    @Override
+    public int get(){
+        return this.superior.size();
+    }
     public boolean deleteSuperior(Manager manager) {
         if (manager != null) {
             for (var read :
@@ -74,10 +75,25 @@ public class Staff extends Employee implements Calculable {
     }
 
     @Override
+    public String showControll() {
+        return "";
+    }
+
+    @Override
+    public String showPercen() {
+        return "";
+    }
+
+    @Override
     public void calculateSalary() {
         if (this.getDayWork() > 0) {
             this.totalSalary = this.getDayWork() * SALARY_PER_WORKING_DAY;
         }
+    }
+
+    @Override
+    public double getPercentage() {
+        return 0;
     }
 
     @Override

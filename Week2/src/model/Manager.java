@@ -14,8 +14,24 @@ public class Manager extends Staff {
         return underControl;
     }
 
-    public void setStaff(Employee staff) {
-        this.underControl.add(staff);
+    public boolean setStaff(Employee staff) {
+        if (!isExit1(staff)) {
+            this.underControl.add(staff);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isExit1(Employee staff) {
+        if (staff != null) {
+            for (var read :
+                    this.underControl) {
+                if (read.equals(staff)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void clear() {
@@ -33,6 +49,15 @@ public class Manager extends Staff {
         if (employee1 != null) {
             this.underControl.remove(employee);
         }
+    }
+
+    @Override
+    public String showControll() {
+        return "Id :" + super.getIdString() + "  Name:" + super.getName() + "  UnderControll:" + underControl.size();
+    }
+
+    public int get() {
+        return this.underControl.size();
     }
 
     public Employee isExit(Employee employee) {

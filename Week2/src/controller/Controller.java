@@ -157,6 +157,8 @@ public class Controller {
                             companyModel.findHightSalary();
                             showStaffs();
                         }
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
                     }
                     break;
                 case 10:
@@ -165,13 +167,38 @@ public class Controller {
                             companyModel.findHightSalary();
                             companyModel.showSalaryAll();
                         }
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
                     }
                     break;
                 case 11:
-                    if (companyModel != null){
+                    if (companyModel != null) {
                         if (!companyModel.getEmployeeList().isEmpty()) {
-
+                            companyModel.sortUnderControl();
+                            companyModel.showManagerControll();
                         }
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
+                    }
+                    break;
+                case 12:
+                    if (companyModel != null) {
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+                            companyModel.sortPercentage();
+                            companyModel.showDirectorPercentage();
+                        }
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
+                    }
+                    break;
+                case 13:
+                    if (companyModel != null) {
+                        if (!companyModel.getEmployeeList().isEmpty()) {
+                            companyModel.calculateSalaryDirector();
+                            companyModel.showDirectorSalary();
+                        }
+                    } else {
+                        Text.printOut("Công ty không tồn tại.");
                     }
                     break;
                 default:
@@ -277,8 +304,9 @@ public class Controller {
                     managers) {
                 if (read.equals(manager) && read.getDuty().equals("Manager")) {
                     Manager man = (Manager) read;
-                    man.setStaff(staff);
-                    return true;
+                    if (man.setStaff(staff)) {
+                        return true;
+                    }
                 }
             }
         }

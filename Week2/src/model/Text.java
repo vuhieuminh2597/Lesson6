@@ -14,6 +14,8 @@ public class Text {
         printOut("= 9.Tìm Nhân viên thường có lương cao nhất.                    =");
         printOut("= 10.Sắp xếp nhân viên toàn công ty theo thứ tự lương giảm dần.=");
         printOut("= 11.Trưởng Phòng có số lượng nhân viên dưới quyền nhiều nhất. =");
+        printOut("= 12.Giám Đốc có số lượng cổ phần nhiều nhất.                  =");
+        printOut("= 13.Tính và xuất thu nhập của từng giám đôc.                  =");
         stringLine();
         textChoice();
     }
