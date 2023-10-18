@@ -53,14 +53,14 @@ public abstract class Employee implements Calculable,Viewable {
     public abstract double getTotalSalary();
     public abstract String showSalaryStaffs();
     public abstract String showControll();
-
     public abstract String showPercen();
     public abstract int get();
     @Override
     public void calculateSalary() {
     }
+
     @Override
-    public String showString(){
+    public String showString() {
         return "";
     }
     @Override

@@ -25,7 +25,7 @@ public class Text {
     }
 
     public static void stringLine() {
-        System.out.println("=====================================================");
+        System.out.println("================================================================");
     }
 
     public static void textGetInfor() {

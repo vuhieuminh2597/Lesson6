@@ -50,13 +50,13 @@ public class Controller {
                             if (companyModel.addStaff(staff)) {
                                 Text.textSuccess();
                             } else {
-                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
+                                Text.printOut("Đối tượng hoặc mã id đã tồn tại không thể tạo mới!");
                             }
                         } else {
                             Text.textFail();
                         }
                     } else {
-                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 3:
@@ -66,13 +66,13 @@ public class Controller {
                             if (companyModel.addManager(manager)) {
                                 Text.textSuccess();
                             } else {
-                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
+                                Text.printOut("Đối tượng hoặc mã id đã tồn tại không thể tạo mới!");
                             }
                         } else {
                             Text.textFail();
                         }
                     } else {
-                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
 
                     break;
@@ -83,13 +83,13 @@ public class Controller {
                             if (companyModel.addDirector(director)) {
                                 Text.textSuccess();
                             } else {
-                                Text.printOut("Đối tượng đã tồn tại không thể tạo mới!");
+                                Text.printOut("Đối tượng hoặc mã id đã tồn tại không thể tạo mới!");
                             }
                         } else {
                             Text.textFail();
                         }
                     } else {
-                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
 
                     break;
@@ -116,7 +116,7 @@ public class Controller {
                             Text.printOut("ID nhân viên không đúng hoặc không tồn tại!");
                         }
                     } else {
-                        Text.printOut("Hãy nhập thông tin công ty trước.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 6:
@@ -130,14 +130,14 @@ public class Controller {
                         }
                         companyModel.deletePersonnel(inputId);
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 7:
                     if (companyModel != null) {
                         showAllEmp();
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 8:
@@ -149,6 +149,8 @@ public class Controller {
                             }
                             showAllEmp();
                         }
+                    } else {
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 9:
@@ -158,7 +160,7 @@ public class Controller {
                             showStaffs();
                         }
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 10:
@@ -168,7 +170,7 @@ public class Controller {
                             companyModel.showSalaryAll();
                         }
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 11:
@@ -178,7 +180,7 @@ public class Controller {
                             companyModel.showManagerControll();
                         }
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 12:
@@ -188,7 +190,7 @@ public class Controller {
                             companyModel.showDirectorPercentage();
                         }
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 case 13:
@@ -198,7 +200,7 @@ public class Controller {
                             companyModel.showDirectorSalary();
                         }
                     } else {
-                        Text.printOut("Công ty không tồn tại.");
+                        Text.printOut("Vui lòng khởi tạo thông tin công ty trước.");
                     }
                     break;
                 default:
@@ -324,6 +326,7 @@ public class Controller {
         if (!directors.isEmpty()) {
             employees.addAll(directors);
         }
+        Text.printOut("Load Database ................. done!");
     }
 
     public void showAllEmp() {
